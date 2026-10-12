@@ -19,7 +19,7 @@
     <tbody>
       {% for b in books %}
       <tr>
-        <td>{{ b.id }}</td>
+        <td>{{ loop.index }}</td>
         <td>{{ b.name }}</td>
         <td>{{ b.author }}</td>
         <td class="num">{{ "{:,.2f}".format(b.price) }}</td>
