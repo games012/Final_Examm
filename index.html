@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="head-row">
+  <h1>รายการหนังสือ</h1>
+  <a class="btn primary" href="{{ url_for('add') }}">+ เพิ่มหนังสือ</a>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ชื่อหนังสือ</th>
+        <th>ผู้แต่ง</th>
+        <th class="num">ราคา (บาท)</th>
+        <th class="actions">จัดการ</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in books %}
+      <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.name }}</td>
+        <td>{{ b.author }}</td>
+        <td class="num">{{ "{:,.2f}".format(b.price) }}</td>
+        <td class="actions">
+          <a class="btn small" href="{{ url_for('edit', book_id=b.id) }}">แก้ไข</a>
+          <form method="post" action="{{ url_for('delete', book_id=b.id) }}"
+                onsubmit="return confirm('ต้องการลบหนังสือ &quot;{{ b.name }}&quot; ใช่หรือไม่?');">
+            <button class="btn small danger" type="submit">ลบ</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="empty">ยังไม่มีข้อมูลหนังสือ</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

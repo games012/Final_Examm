@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="post" class="card">
+  <label>ชื่อหนังสือ
+    <input type="text" name="name" value="{{ book.name or '' }}" required>
+  </label>
+  <label>ผู้แต่ง
+    <input type="text" name="author" value="{{ book.author or '' }}" required>
+  </label>
+  <label>ราคา (บาท)
+    <input type="number" name="price" step="0.01" min="0" value="{{ book.price if book.price is not none else '' }}" required>
+  </label>
+  <div class="form-actions">
+    <button class="btn primary" type="submit">บันทึก</button>
+    <a class="btn" href="{{ url_for('index') }}">ยกเลิก</a>
+  </div>
+</form>
+{% endblock %}
