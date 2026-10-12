@@ -77,7 +77,7 @@ def parse_form():
         return None, "กรุณากรอกชื่อหนังสือและผู้แต่ง"
     return (name, author, price), None
 
-
+init_db()
 @app.route("/")
 def index():
     with db_cursor() as cur:
